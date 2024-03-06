@@ -1,15 +1,9 @@
-import { ModeToggle } from "@/components/ui/dark-mode-toggle";
-import SignUp from "./pages/signup";
+import MainPage from "./main";
 
 export default function Home() {
     return (
-        <main className="flex flex-col items-center justify-center">
-            <section>
-                <ModeToggle />
-            </section>
-            <section>
-                <SignUp />
-            </section>
-       </main>
+        <main className="flex flex-col items-center justify-center w-screen h-screen">
+            <MainPage />
+        </main>
     );
 }

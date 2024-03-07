@@ -13,7 +13,7 @@ type newUserType = {
     password: string;
 }
 
-const LogIn = () => {
+const LogIn = ({isVisible}: {isVisible: boolean}) => {
     // 스키마
     const schema = z.object({
         email: z.string().email({ message: "올바른 이메일을 입력해주세요." }),
@@ -32,10 +32,10 @@ const LogIn = () => {
     const onSubmit = (data: newUserType) => {
         alert(JSON.stringify(data, null, 4));
     };
-
+    isVisible
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col space-y-10 w-1/3">
+            <form onSubmit={form.handleSubmit(onSubmit)} className={`flex flex-col justify-center space-y-10 w-1/3 ${isVisible ? "" : "z-10"}`}>
                 <FormField control={form.control} name="email" render={({ field }) => (
                     <FormItem>
                         <FormLabel>Email</FormLabel>

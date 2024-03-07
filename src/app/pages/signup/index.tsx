@@ -1,42 +1,17 @@
 "use client"
 
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-
-type newUserType = {
-    name: string;
-    email: string;
-    tel: string;
-    role: string;
-    password: string;
-    passwordConfirm: string;
-}
+import { UserSignUpType } from "@/types/userType";
+import { signUpSchema } from "@/validators/validationSchemas";
+import InputForm from "@/components/signup/InputForm";
 
 const SignUp = () => {
-    // 스키마
-    const schema = z.object({
-        name: z.string().min(2, { message: "이름은 2글자 이상이어야 합니다." }),
-        email: z.string().email({ message: "올바른 이메일을 입력해주세요." }),
-        tel: z.string().refine(value => value.startsWith("010"), { message: "010으로 시작하는 11자리 숫자를 입력해주세요." })
-                        .refine(value => value.length >= 11, { message: "연락처는 11자리여야 합니다." }),
-        role: z.string().nonempty({ message: "역할을 선택해주세요." }),
-        password: z.string().min(6, { message: "비밀번호는 최소 6자 이상이어야 합니다." })
-                         .regex(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/, { message: "비밀번호는 영문, 숫자, 특수문자를 포함해야 합니다." }),
-        passwordConfirm: z.string()
-                        .min(6, { message: "비밀번호는 최소 6자 이상이어야 합니다." })
-                        .regex(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/, { message: "비밀번호는 영문, 숫자, 특수문자를 포함해야 합니다." })
-    }).refine((data) => data.password === data.passwordConfirm, {
-        path: ["passwordConfirm"],
-        message: "비밀번호가 일치하지 않습니다.",
-    });
-
-    const form = useForm<newUserType>({
-        resolver: zodResolver(schema),
+    const form = useForm<UserSignUpType>({
+        resolver: zodResolver(signUpSchema),
         defaultValues: {
             name: "",
             email: "",
@@ -47,45 +22,18 @@ const SignUp = () => {
         },
     });
 
-    const onSubmit = (data: newUserType) => {
+    const onSubmit = (data: UserSignUpType) => {
         alert(JSON.stringify(data, null, 4));
     };
 
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col space-y-5 h-screen w-1/3 justify-center">
-                <FormField control={form.control} name="name" render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Name</FormLabel>
-                        <FormControl>
-                            <Input placeholder="홍길동" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <InputForm form={form} id="name" labelName="Name" type="text" placeholder="홍길동"/>
 
-                <FormField control={form.control} name="email" render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Email</FormLabel>
-                        <FormControl>
-                            <Input placeholder="hello@sparta-devcamp.com" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <InputForm form={form} id="email" labelName="Email" type="email" placeholder="hello@sparta-devcamp.com"/>
 
-                <FormField control={form.control} name="tel" render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Phone</FormLabel>
-                        <FormControl>
-                            <Input placeholder="01000000000" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <InputForm form={form} id="tel" labelName="Phone" type="text" placeholder="01000000000"/>
 
                 <FormField control={form.control} name="role" render={({ field }) => (
                     <FormItem>
@@ -106,27 +54,9 @@ const SignUp = () => {
                   )}
                 />
 
-                <FormField control={form.control} name="password" render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Password</FormLabel>
-                        <FormControl>
-                            <Input {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <InputForm form={form} id="password" labelName="Password" type="password" placeholder=""/>
 
-                <FormField control={form.control} name="passwordConfirm" render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>password Confirm</FormLabel>
-                        <FormControl>
-                            <Input {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <InputForm form={form} id="passwordConfirm" labelName="password Confirm" type="password" placeholder=""/>
 
                 <Button type="submit">SignUp</Button>
             </form>

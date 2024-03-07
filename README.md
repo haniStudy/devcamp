@@ -17,7 +17,7 @@
 </br>
 
 ##  2. 화면 구성 및 주요 기능
-<img src="https://github.com/haniStudy/devcamp/assets/134919218/558c9e26-cfb2-45e9-887c-1bdad4035ef3" >
+![화면](https://github.com/haniStudy/devcamp/assets/134919218/682b70ed-6c52-4b64-9c87-2b41e7df2b43)
 
 </br>
 

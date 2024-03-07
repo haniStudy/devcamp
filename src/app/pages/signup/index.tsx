@@ -53,7 +53,7 @@ const SignUp = () => {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col space-y-5 w-1/3">                    
+            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col space-y-5 h-screen w-1/3 justify-center">
                 <FormField control={form.control} name="name" render={({ field }) => (
                     <FormItem>
                         <FormLabel>Name</FormLabel>

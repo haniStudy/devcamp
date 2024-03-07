@@ -2,37 +2,26 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-
-type newUserType = {
-    email: string;
-    password: string;
-}
+import { UserLoginType } from "@/types/userType";
+import { logInSchema } from "@/validators/validationSchemas";
 
 const LogIn = ({isVisible}: {isVisible: boolean}) => {
-    // 스키마
-    const schema = z.object({
-        email: z.string().email({ message: "올바른 이메일을 입력해주세요." }),
-        password: z.string().min(6, { message: "비밀번호는 최소 6자 이상이어야 합니다." })
-                         .regex(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/, { message: "비밀번호는 영문, 숫자, 특수문자를 포함해야 합니다." }),
-    });
-
-    const form = useForm<newUserType>({
-        resolver: zodResolver(schema),
+    const form = useForm<UserLoginType>({
+        resolver: zodResolver(logInSchema),
         defaultValues: {
             email: "",
             password: "",
         },
     });
 
-    const onSubmit = (data: newUserType) => {
+    const onSubmit = (data: UserLoginType) => {
         alert(JSON.stringify(data, null, 4));
     };
-    isVisible
+
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className={`flex flex-col justify-center space-y-10 w-1/3 ${isVisible ? "" : "z-10"}`}>
@@ -51,7 +40,7 @@ const LogIn = ({isVisible}: {isVisible: boolean}) => {
                     <FormItem>
                         <FormLabel>Password</FormLabel>
                         <FormControl>
-                            <Input {...field} />
+                            <Input type="password" {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -60,7 +49,6 @@ const LogIn = ({isVisible}: {isVisible: boolean}) => {
 
                 <Button type="submit">LogIn</Button>
             </form>
-
         </Form>
     )
 }

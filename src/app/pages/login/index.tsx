@@ -27,9 +27,9 @@ const LogIn = ({isVisible}: {isVisible: boolean}) => {
             <form onSubmit={form.handleSubmit(onSubmit)} className={`flex flex-col justify-center space-y-10 w-1/3 ${isVisible ? "" : "z-10"}`}>
                 <FormField control={form.control} name="email" render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel className="text-black">Email</FormLabel>
                         <FormControl>
-                            <Input placeholder="hello@sparta-devcamp.com" {...field} />
+                            <Input className="bg-white" placeholder="hello@sparta-devcamp.com" {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -38,16 +38,16 @@ const LogIn = ({isVisible}: {isVisible: boolean}) => {
 
                 <FormField control={form.control} name="password" render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Password</FormLabel>
+                        <FormLabel className="text-black">Password</FormLabel>
                         <FormControl>
-                            <Input type="password" {...field} />
+                            <Input type="password" className="bg-white" {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
                   )}
                 />
 
-                <Button type="submit">LogIn</Button>
+                <Button type="submit" className="bg-black text-white">LogIn</Button>
             </form>
         </Form>
     )

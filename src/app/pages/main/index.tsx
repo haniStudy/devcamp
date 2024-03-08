@@ -34,12 +34,12 @@ const MainPage = () => {
                 <SignUp />
             </div>
             <div className="absolute top-0 left-0 w-1/2 h-screen">
-                <motion.div className="flex bg-black h-screen" animate={signUpShow}>
+                <motion.div className="flex bg-white h-screen" animate={signUpShow}>
                     <div className="controls flex justify-center items-center">
                         <motion.button
                             whileTap={{ scale: 0.95 }}
                             onClick={() => setIsVisible(!isVisible)}
-                            className="text-white h-screen flex items-center justify-center"
+                            className="text-black h-screen flex items-center justify-center"
                         >
                             {buttonName}
                         </motion.button>

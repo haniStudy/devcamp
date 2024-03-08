@@ -9,9 +9,9 @@ const InputForm = ({form, id, labelName, type, placeholder}: {form: UseFormRetur
     return (
         <FormField control={form.control} name={id} render={({ field }) => (
             <FormItem>
-                <FormLabel className="text-black">{labelName}</FormLabel>
+                <FormLabel>{labelName}</FormLabel>
                 <FormControl>
-                    <Input className="bg-white" type={type} placeholder={placeholder} {...field} />
+                    <Input type={type} placeholder={placeholder} {...field} />
                 </FormControl>
                 <FormMessage />
             </FormItem>

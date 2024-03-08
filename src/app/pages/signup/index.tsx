@@ -58,7 +58,7 @@ const SignUp = () => {
 
                 <InputForm form={form} id="passwordConfirm" labelName="password Confirm" type="password" placeholder=""/>
 
-                <Button type="submit">SignUp</Button>
+                <Button className="bg-black text-white" type="submit">SignUp</Button>
             </form>
         </Form>
     )

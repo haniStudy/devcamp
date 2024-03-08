@@ -37,14 +37,14 @@ const SignUp = () => {
 
                 <FormField control={form.control} name="role" render={({ field }) => (
                     <FormItem>
-                        <FormLabel>역할</FormLabel>
+                        <FormLabel className="text-black">역할</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
+                            <FormControl className="bg-white">
                                 <SelectTrigger>
                                     <SelectValue placeholder="역할을 선택해주세요" />
                                 </SelectTrigger>
                             </FormControl>
-                            <SelectContent>
+                            <SelectContent className="bg-white">
                                 <SelectItem value="admin">관리자</SelectItem>
                                 <SelectItem value="user">일반사용자</SelectItem>
                             </SelectContent>

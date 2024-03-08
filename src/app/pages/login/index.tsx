@@ -47,7 +47,7 @@ const LogIn = ({isVisible}: {isVisible: boolean}) => {
                   )}
                 />
 
-                <Button type="submit" className="bg-black text-white">LogIn</Button>
+                <Button type="submit">LogIn</Button>
             </form>
         </Form>
     )

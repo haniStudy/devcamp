@@ -28,7 +28,7 @@ const MainPage = () => {
     }, [isVisible]);
 
     return (
-        <div className="w-screen h-screen m-10 bg-white">
+        <div className="w-screen h-screen m-10">
             <div className="flex justify-around">
                 <LogIn isVisible={isVisible}/>
                 <SignUp />
